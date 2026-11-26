@@ -1,6 +1,6 @@
 {
   "name": "bora-estudar",
-  "version": "1.1.0",
+  "version": "1.0.0",
   "description": "Bora Estudar: app de estudos para concursos com contas e progresso salvo no servidor",
   "private": true,
   "license": "UNLICENSED",
@@ -12,8 +12,7 @@
     "dev": "node --env-file-if-exists=.env --watch src/server.js",
     "test": "node --test --test-concurrency=1 \"test/*.test.js\"",
     "gen-secrets": "node scripts/gen-secrets.js",
-    "backup": "node --env-file-if-exists=.env scripts/backup.js",
-    "banco": "node banco/build.js"
+    "backup": "node --env-file-if-exists=.env scripts/backup.js"
   },
   "dependencies": {
     "express": "5.3.0",

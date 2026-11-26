@@ -87,33 +87,3 @@ src/passwords.js   regras de senha e e-mail
 public/            o app (index.html, entrar.js = login, app.js = app)
 test/              testes automatizados
 ```
-
-
----
-
-## Como alterar e atualizar o app para todos os usuários
-
-O app é um só: todo mundo usa a mesma versão que está no servidor. Mudou no servidor, mudou para todos.
-
-**Rotina de atualização (5 passos)**
-
-1. Altere o que quiser nos arquivos (textos e visual em `public/app.css` e `public/app.js`; leitor de edital em `public/edital.js`; questões em `banco/parte1.js` e `banco/parte2.js`).
-2. Se mexeu em questões, rode `npm run banco` (gera `public/banco-questoes.json`).
-3. Rode `npm test`. Tudo verde? Pode seguir. Vermelho? Não publique, corrija antes.
-4. Envie para o GitHub: `git add -A`, `git commit -m "o que mudei"`, `git push`.
-5. O Render detecta o envio e publica sozinho (1 a 3 min). Quem estiver com o app aberto vê o aviso **"Tem novidade no app! Atualizar agora"**; quem abrir depois já pega a versão nova.
-
-**O que NÃO se perde numa atualização:** contas, senhas e progresso ficam no disco do servidor (`DATA_DIR`), fora do código. Atualizar o código não apaga nada.
-
-**Cuidados**
-- Antes de mudanças grandes, faça backup: `npm run backup`.
-- Nunca troque `SESSION_PEPPER`/`DATA_KEY` (segredos do `.env`): isso impediria de abrir os dados salvos.
-- Mudou algo no formato dos dados salvos? Faça a mudança aceitar também o formato antigo (o app já ignora campos desconhecidos).
-- Teste em casa antes: `npm start` e abra http://localhost:3000.
-
-## Aba Questões
-
-- Banco original com 156 questões (Português, Raciocínio Lógico, Informática, Direito Constitucional e Direito Administrativo), todas com gabarito e explicação, em múltipla escolha e Certo/Errado.
-- As matérias do usuário são ligadas ao banco pelo nome e os assuntos do edital dele ganham o selo "no seu edital".
-- Treino por assunto ou misto, simulado (com cronômetro e pontuação opcional estilo Cebraspe), nota final de 0 a 10, dicas do treinador, caderno de erros e questões próprias do usuário.
-- Para ampliar o banco: copie o formato de `banco/parte2.js`, adicione assuntos/questões, rode `npm run banco` e `npm test`.
